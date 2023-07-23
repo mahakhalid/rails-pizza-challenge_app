@@ -1,0 +1,13 @@
+.divider-line {
+    height: 1px;
+    background: black;
+}
+
+.vertical-align {
+  vertical-align: top;
+
+}
+
+.padding-left {
+  padding-left:50px;
+}
