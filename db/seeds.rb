@@ -1,7 +1,12 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+# frozen_string_literal: true
+
+# Order.destroy_all is run to destroy all orders to have a clean state as "rails db:seed" command can be run mutliple times resulting in duplicate data
+# Alternatively, this can also be achieved using a rake task
+Order.destroy_all
+orders = JSON.parse(File.read('data/orders.json'))
+
+orders.each do |order|
+  order['state'].downcase!
+  formatted_data = order.transform_keys(&:underscore)
+  Order.create(formatted_data)
+end

@@ -1,0 +1,53 @@
+<%- @orders.each do |order| %>
+  <div class="divider-line"></div>
+  <div>
+  <table><tr><td class="vertical-align">
+    <p>ID: 
+      <%= id(order) %>
+    <p>
+    <p>Created:
+      <%= creation_date(order) %>
+    </p>
+    <p>Promotion Codes:
+      <%= promotion_code(order) %>
+    </p>
+    <p>Discount Code:
+      <%= discount_code(order) %>
+    </p>
+    <p>Total Price: <%= number_to_currency(order.total_price, unit: "€", format: "%n%u") %></p>
+    
+    <br>
+
+    <br>
+    <%= button_to 'Complete', order_path(order.id), method: :patch, params: { order: { state: true } } %>
+    <br>
+    </td>
+    <td class="vertical-align padding-left">
+    <p>Items:</p>
+    <p>
+    <%- order.items.each do |item| %>
+      <ul>
+        <li><%= pizza_name(item) %><%=  " (#{pizza_size(item)})" %></li>
+        <ul>
+          <% if add_ingredients?(item) %>
+            <li>
+              <p>
+                <%= ingredients_to_add(item) %>
+              </p>
+            </li>
+          <% end %>
+          <% if remove_ingredients?(item) %>
+            <li>
+              <p>
+                <%= ingredients_to_remove(item) %>
+              </p>
+            </li>
+          <% end %>
+        </ul>
+      </ul>
+    <% end %>
+    </p>
+    </td>
+    </tr></table>
+  </div>
+<% end %>
