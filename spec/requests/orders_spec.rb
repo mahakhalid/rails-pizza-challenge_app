@@ -109,7 +109,7 @@ RSpec.describe 'Orders', type: :request do
         expect(response.body).to include('Created')
         expect(response.body).to include('Items')
         expect(response.body).to include('Promotion Codes')
-        expect(response.body).to include('Discount Code')
+        expect(response.body).to include('Discount Codes')
         expect(response.body).to include('Tonno (Large)')
         expect(response.body).to include('Total Price: 10.40€')
         expect(response.body).to include('Total Price: 25.15€')
@@ -122,7 +122,7 @@ RSpec.describe 'Orders', type: :request do
         expect(response.body.scan('ID').count).to eq(3)
         expect(response.body.scan('Created').count).to eq(3)
         expect(response.body.scan('Promotion Codes').count).to eq(3)
-        expect(response.body.scan('Discount Code').count).to eq(3)
+        expect(response.body.scan('Discount Codes').count).to eq(3)
         expect(response.body.scan('Items').count).to eq(3)
         expect(response.body.scan('Total Price').count).to eq(3)
       end
@@ -146,7 +146,7 @@ RSpec.describe 'Orders', type: :request do
         expect(response.body.scan('ID').count).to eq(0)
         expect(response.body.scan('Created').count).to eq(0)
         expect(response.body.scan('Promotion Codes').count).to eq(0)
-        expect(response.body.scan('Discount Code').count).to eq(0)
+        expect(response.body.scan('Discount Codes').count).to eq(0)
         expect(response.body.scan('Items').count).to eq(0)
         expect(response.body.scan('Total Price').count).to eq(0)
       end
